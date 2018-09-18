@@ -1,10 +1,7 @@
 import Airtable from 'airtable';
 
-Airtable.configure({
-  ENDPOINTURL: 'https://api.airtable.com',
+const table = new Airtable({
   apiKey: process.env.REACT_APP_AIRTABLE_API_KEY,
-});
-
-const table = Airtable.base('appd0f2sVUKlzdhPG');
+}).base(process.env.REACT_APP_AIRTABLE_BASE_ID);
 
 export default table;
