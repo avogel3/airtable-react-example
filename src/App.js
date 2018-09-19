@@ -10,11 +10,15 @@ class App extends Component {
   };
   componentDidMount() {
     base('Backlog')
-      .select()
+      .select({
+        sort: [
+          { field: 'Status', direction: 'desc' },
+          { field: 'Story Name', direction: 'desc' },
+        ],
+      })
       .firstPage((error, records) => {
         if (error) return this.setState({ error });
         const result = records.map(record => {
-          console.log(record);
           return {
             storyName: record.get('Story Name'),
             priority: record.get('Priority'),
