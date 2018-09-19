@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import table from './table';
+import base from './base';
 
 class App extends Component {
   state = {
@@ -9,11 +9,12 @@ class App extends Component {
     error: null,
   };
   componentDidMount() {
-    table('Backlog')
+    base('Backlog')
       .select()
       .firstPage((error, records) => {
         if (error) return this.setState({ error });
         const result = records.map(record => {
+          console.log(record);
           return {
             storyName: record.get('Story Name'),
             priority: record.get('Priority'),
